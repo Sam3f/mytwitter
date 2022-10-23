@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import { db } from "../firebase";
 
+// added this comment too
 
 function Comment({ id, comment }) {
   const { data: session } = useSession();
