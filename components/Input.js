@@ -10,6 +10,7 @@ import React, { useRef, useState } from "react";
 //importing emoji library
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+
 // adding firebase components
 import { db, storage } from "../firebase";
 import {
@@ -88,14 +89,14 @@ function Input() {
 
   return (
     <div
-      className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll scrollbar-hide ${
+      className={`border-b border-gray-700 p-3 flex space-x-3 scrollbar-hide ${
         loading && "opacity-60"
       }`}
     >
       {" "}
       <div className="h-10 w-10 rounded-full xl:mr-2.5 relative">
         <Image
-         className="rounded-full"
+          className="rounded-full"
           src={session.user.image}
           layout="fill"
           objectFit="fill"
@@ -150,39 +151,28 @@ function Input() {
                 />
               </div>
 
-              {/* <div className="icon rotate-90">
-                <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
-              </div> */}
               {/* Code to select emojis */}
               <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
                 <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
               </div>
-{/* 
-              <div className="icon">
-                <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
-              </div> */}
-
+              
+              <div className="absolute mt-[465px] ml-4 max-w-[320px] border-r-3">
               {showEmojis && (
                 <Picker
-                  onSelect={addEmoji}
-                  style={{
-                    position: "absolute",
-                    marginTop: "465px",
-                    marginLeft: -40,
-                    maxWidth: "320px",
-                    borderRadius: "20px",
-                  }}
+                  data={data}
+                  onEmojiSelect={addEmoji}
                   theme="dark"
                 />
               )}
+              </div>
             </div>
             <button
-              className="bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 
+              className="bg-black text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-gray disabled:hover:bg-gray disabled:opacity-50 
             disabled:cursor-default"
               disabled={!input.trim() && !selectedFile}
               onClick={sendPost}
             >
-              Tweet
+              Moontweet
             </button>
           </div>
         )}

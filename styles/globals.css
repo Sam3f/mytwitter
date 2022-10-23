@@ -6,7 +6,7 @@
 
 @layer base{
     body{
-        @apply bg-black
+        @apply bg-gray-900
 
     }
 }
@@ -20,7 +20,7 @@
 
 
     .icon{
-        @apply cursor-pointer w-9 h-9 hover:bg-[#1d9bf0]
+        @apply cursor-pointer w-9 h-9 hover:bg-gray-700
         hover:bg-opacity-10 flex items-center justify-center 
         rounded-full transition ease-out 
     }

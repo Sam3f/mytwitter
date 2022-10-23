@@ -27,7 +27,7 @@ export default function Home({ trendingResults, followResults, providers }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-black min-h-screen flex max-w-[1500px] mx-auto">
+      <main className="bg- min-h-screen flex max-w-[1500px] mx-auto">
         <Sidebar />
         <Feed />
         {isOpen && <Modal />}
@@ -39,19 +39,13 @@ export default function Home({ trendingResults, followResults, providers }) {
 //serversideprop is for information that is dynamic, it is constantly changing
 
 export async function getServerSideProps(context) {
-  // const trendingResults = await fetch("https://jsonkeeper.com/b/NKEV").then(
-  //   (res) => res.json()
-  // );
-  // const followResults = await fetch("https://jsonkeeper.com/b/WWMJ").then(
-  //   (res) => res.json()
-  // );
+
   const providers = await getProviders();
   const session = await getSession(context);
 
   return {
     props: {
-      // trendingResults,
-      // followResults,
+
       providers,
       session,
     },

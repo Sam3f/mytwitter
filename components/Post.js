@@ -8,11 +8,9 @@ import {
   setDoc,
 } from "@firebase/firestore";
 import {
-  ChartBarIcon,
   ChatIcon,
   DotsHorizontalIcon,
   HeartIcon,
-  ShareIcon,
   SwitchHorizontalIcon,
   TrashIcon,
 } from "@heroicons/react/outline";
@@ -40,20 +38,18 @@ function Post({ id, post, postPage }) {
   const [liked, setLiked] = useState(false);
   const router = useRouter();
 
-
-
-  
   useEffect(
     () =>
       onSnapshot(
-        query(collection(db, "posts",id,"comments"), orderBy("timestamp", "desc")),
-        (snapshot) => setComments(snapshot.docs)  
+        query(
+          collection(db, "posts", id, "comments"),
+          orderBy("timestamp", "desc")
+        ),
+        (snapshot) => setComments(snapshot.docs)
       ),
-    [db,id]
+    [db, id]
   );
-   
 
-  //Look into useEffect
   useEffect(
     () =>
       onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
@@ -83,6 +79,7 @@ function Post({ id, post, postPage }) {
   return (
     <div
       className="p-3 flex cursor-pointer border-b border-gray-700"
+      //This on click will redirect the user to a new page based on their ID
       onClick={() => router.push(`/${id}`)}
     >
       {!postPage && (
@@ -98,13 +95,14 @@ function Post({ id, post, postPage }) {
       <div className="flex flex-col space-y-2 w-full">
         <div className={`flex ${!postPage && "justify-between"}`}>
           {postPage && (
-            <img
-              src={post?.userImg}
-              alt="Profile Pic"
-              className="h-11 w-11 rounded-full mr-4"
-              // height={30}
-              // width={30}
-            />
+            <div className="h-10 w-10 rounded-full xl:mr-2.5 relative">
+              <Image
+                className="rounded-full"
+                src={post?.userImg}
+                layout="fill"
+                objectFit="fill"
+              />
+            </div>
           )}
           <div className="text-[#6e767d]">
             <div className="inline-block group">
@@ -223,13 +221,6 @@ function Post({ id, post, postPage }) {
                 {likes.length}
               </span>
             )}
-          </div>
-
-          <div className="icon group">
-            <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
-          </div>
-          <div className="icon group">
-            <ChartBarIcon className="h-5 group-hover:text-[#1d9bf0]" />
           </div>
         </div>
       </div>

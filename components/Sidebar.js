@@ -1,16 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { HomeIcon } from "@heroicons/react/solid";
-import { MoonIcon } from '@heroicons/react/outline'
+import { MoonIcon } from '@heroicons/react/solid'
 import SidebarLink from "./SidebarLink";
 import {
-  HashtagIcon,
-  BellIcon,
-  InboxIcon,
-  BookmarkIcon,
-  ClipboardListIcon,
-  UserIcon,
-  DotsCircleHorizontalIcon,
   DotsHorizontalIcon,
 } from "@heroicons/react/outline";
 import { signOut, useSession } from 'next-auth/react';
@@ -20,24 +13,17 @@ import { signOut, useSession } from 'next-auth/react';
 function Sidebar() {
   const { data: session } = useSession();
   return (
-    <div className='hidden sm:flex flex-col items-center xl:items-start xl:w[340px] p-2 fixed h-full'>Sidebar
+    <div className='hidden sm:flex flex-col items-center xl:items-start xl:w[340px] p-2 fixed h-full'>
     
-    <div className='flex items-center justify-center w-14 h-14 hoverAnimation p-0 xl:ml-24 rounded-full'> 
-        <MoonIcon className='text-white'></MoonIcon>
+    <div className='space-y-2.5 mt-4 mb-2.5 xl:ml-24'> 
+        <SidebarLink Icon={MoonIcon} className='text-white' active/>
     </div>  
-    {/* Icons on the left */}
+    {/* Icon on the left */}
     <div className="space-y-2.5 mt-4 mb-2.5 xl:ml-24">
         <SidebarLink text="Home" Icon={HomeIcon} active />
-        <SidebarLink text="Explore" Icon={HashtagIcon} />
-        <SidebarLink text="Notifications" Icon={BellIcon} />
-        <SidebarLink text="Messages" Icon={InboxIcon} />
-        <SidebarLink text="Bookmarks" Icon={BookmarkIcon} />
-        <SidebarLink text="Lists" Icon={ClipboardListIcon} />
-        <SidebarLink text="Profile" Icon={UserIcon} />
-        <SidebarLink text="More" Icon={DotsCircleHorizontalIcon} />
       </div>
-      <button className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-[#1a8cd8]">
-        Tweet
+      <button className="hidden xl:inline ml-auto bg-black text-white rounded-full w-56 h-[52px] text-lg font-bold shadow-md hover:bg-gray">
+        Moontweet
       </button>
       <div
         className="text-[#d9d9d9] flex items-center justify-center mt-auto hoverAnimation xl:ml-auto xl:-mr-5"
