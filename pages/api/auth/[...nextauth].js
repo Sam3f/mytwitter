@@ -20,9 +20,9 @@ export default NextAuth({
         return session;
     },
   },
-  secret: process.env.SECRET,
+  secret: process.env.JWT_SECRET,
   jwt:{
-    secret: process.env.AUTH_SECRET,
+    secret: process.env.JWT_SECRET,
     encryption: true,
     signingKey: {"kty":"oct","kid":"nbcNUIB6u3IYMhifplPvNAZ1JgPGNKtkR3Jgtg5XQh0","alg":"HS512","k":"du0Mv1n39ZSPUVKLiHhFQVxUmAitWPJoqldh1MWM8eE5DX-shAbMJ--LwMONeKEWOpzgDHgqBnvw-yfd6GUA7A"},
     encryptionKey: {"kty":"oct","kid":"tD3zf2FdW-MC22g8v5WH5XCQVSfGLaYmses2lkqsjP4","alg":"HS512","k":"vMcEUbmCXUc1GAgeXgaHvxKrAbdSdIxIjbjczMEDZtqR3DOoUNachzzx7gLr_3vOqPx5c2tA-3Ou7RT7CQVXtg"}  
