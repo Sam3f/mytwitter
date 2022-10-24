@@ -20,7 +20,6 @@
     "next-auth": "^4.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-input-emoji": "^4.2.0",
     "react-moment": "^1.1.2",
     "recoil": "^0.7.6"
   },
