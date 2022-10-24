@@ -6,6 +6,7 @@ const nextConfig = {
   swcMinify: true,
   eslint: {
     ignoreDuringBuilds: true,
+    "react/no-unescaped-entities": 0,
   }
 }
 
