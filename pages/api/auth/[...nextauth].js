@@ -28,12 +28,5 @@ export default NextAuth({
     encryptionKey: {"kty":"oct","kid":"tD3zf2FdW-MC22g8v5WH5XCQVSfGLaYmses2lkqsjP4","alg":"HS512","k":"vMcEUbmCXUc1GAgeXgaHvxKrAbdSdIxIjbjczMEDZtqR3DOoUNachzzx7gLr_3vOqPx5c2tA-3Ou7RT7CQVXtg"}  
   },
 
-  // adapter: FirestoreAdapter({
-  //   apiKey: "AIzaSyBsyhzThUOr7wlLGx3SYGNW21En3EMi5i4",
-  //   appId: "1:732843233838:web:abe8cdde1b74a64b8405bf",
-  //   authDomain: "mytwitter-39bde.firebaseapp.com",
-  //   projectId: "mytwitter-39bde",
-  //   storageBucket: "mytwitter-39bde.appspot.com",
-  //   messagingSenderId: "732843233838",
-  // }),
+
 });
