@@ -12,7 +12,7 @@ You can use images or emojis to convey your message!
 
 ## More About My Website
 
-My website was built with NextJS, a react- based framework. Tailwindcss was used to style it. Firestore firebase was used as the main database. Finally I used RecoilJS for the state management of the many different components used. 
+My website was built with NextJS, a react- based framework. Tailwindcss was used to style it. Firestore was used as the main database. 
 
 
 
