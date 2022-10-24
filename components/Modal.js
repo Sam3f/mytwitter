@@ -55,7 +55,6 @@ function Modal() {
     setIsOpen(false);
     setComment("");
 
-    //look into router
     router.push(`/${postId}`);
   };
 
