@@ -19,6 +19,7 @@ import Comment from "../components/Comment";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Login from "../components/Login";
+import { ArrowCircleLeftIcon } from "@heroicons/react/outline";
 
 //the name of this file is a basically a wildcard
 function PostPage({ providers }) {
@@ -73,7 +74,7 @@ function PostPage({ providers }) {
           gap-x-4 sticky top-0 z-50 bg-gray-900"
           >
             <div
-              className="hoverAnimation w-9 h-9 flex items-center justify-center xl:px:0"
+              className="hoverAnimation md:scale-75  w-20 flex items-center justify-center xl:px:0"
               onClick={() => router.push("/")}
             >
               <ArrowLeftIcon className=" text-white" />
