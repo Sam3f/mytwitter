@@ -8,24 +8,17 @@ import {
   addDoc,
   collection,
   serverTimestamp,
-  updateDoc
+  updateDoc,
 } from "@firebase/firestore";
 import { db, storage } from "../firebase";
 import { useSession } from "next-auth/react";
-import {
-  CalendarIcon,
-  ChartBarIcon,
-  EmojiHappyIcon,
-  PhotographIcon,
-  XIcon,
-} from "@heroicons/react/outline";
+import { EmojiHappyIcon, XIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import Moment from "react-moment";
 import Image from "next/image";
 import { async } from "@firebase/util";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 function Modal() {
   const { data: session } = useSession();
@@ -35,22 +28,6 @@ function Modal() {
   const [comment, setComment] = useState("");
   const router = useRouter();
   const [showEmojis, setShowEmojis] = useState(false);
-
-  const [selectedFile, setSelectedFile] = useState(null);
-  const filePickerRef = useRef(null);
-
-  
-
-  const addImageToPost = (e) => {
-    const reader = new FileReader();
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-    }
-
-    reader.onload = (readerEvent) => {
-      setSelectedFile(readerEvent.target.result);
-    };
-  };
 
   useEffect(
     () =>
@@ -64,7 +41,7 @@ function Modal() {
     e.preventDefault();
 
     //Adding into a collection
-   const docRef= await addDoc(collection(db, "posts", postId, "comments"), {
+    const docRef = await addDoc(collection(db, "posts", postId, "comments"), {
       comment: comment,
       username: session.user.name,
       tag: session.user.tag,
@@ -75,20 +52,6 @@ function Modal() {
 
     //after addding it successfuly we want to make sure it is set to false
 
-
-
-    const imageRef = ref(storage, `comments/${docRef.id}/image`);
-
-    if (selectedFile) {
-      await uploadString(imageRef, selectedFile, "data_url").then(async () => {
-        const downloadURL = await getDownloadURL(imageRef);
-        await updateDoc(doc(db, "posts/comments",docRef.id), {
-          image: downloadURL,
-        });
-      });
-    }
-
-    setSelectedFile(null);
     setIsOpen(false);
     setComment("");
 
@@ -202,44 +165,9 @@ function Modal() {
                         className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[80px]"
                       />
 
-                      {/* Adding the image to the reply */}
-                      {selectedFile && (
-                        <div className="relative">
-                          <div
-                            className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] 
-                      bg-opacity-75 rounded-full flex items-center justify-center top-1 left-1 
-                      cursor-pointer"
-                            // makes sure our selected file goes back to null once the 'X' is clicked
-                            onClick={() => setSelectedFile(null)}
-                          >
-                            <XIcon className=" text-white h-5"></XIcon>
-                          </div>
-                          <img
-                            src={selectedFile}
-                            alt=""
-                            // contains the image by giving it a a fixed width and height
-                            className="rounded-2xl max-h-80 object-contain"
-                          />
-                        </div>
-                      )}
-
                       {/* Icons at the bottom of modal */}
                       <div className="flex items-center justify-between pt-2.5">
                         <div className="flex items-center">
-                          <div
-                            className="icon"
-                            // The click event will happen here, with the reference being the input file
-                            onClick={() => filePickerRef.current.click()}
-                          >
-                            <PhotographIcon className="text-[#1d9bf0] h-[22px]" />
-                            <input
-                              type="file"
-                              hidden
-                              onChange={addImageToPost}
-                              ref={filePickerRef}
-                            />
-                          </div>
-
                           {/* Adding the emoji picker to the replies */}
                           <div
                             className="icon"
@@ -249,6 +177,7 @@ function Modal() {
                           </div>
                           <div className="border-r-10 max-w-10 mt-0">
                             {showEmojis && (
+                              
                               <Picker
                                 data={data}
                                 onEmojiSelect={addEmoji}
